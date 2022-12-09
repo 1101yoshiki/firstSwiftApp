@@ -22,6 +22,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var buyQuantity: UITextField!
     
  
+    @IBOutlet weak var DetailContainer: UIView!
+    @IBOutlet weak var cartIcon: UIImageView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var Product: UILabel!
@@ -33,40 +35,40 @@ class DetailViewController: UIViewController {
         Product.text = outputProduct
         Price.text = outputPrice
         
-//        print(self.view.window?.windowScene!.interfaceOrientation.isPortrait)
-        if UIApplication.shared.statusBarOrientation.isPortrait {
-            DeviceDisplayShort = view.frame.size.width
-            DeviceDisplayLong = view.frame.size.height
-            headerView.frame = CGRect(x:0, y:46, width:DeviceDisplayShort, height:77)
+        if view.frame.size.width < view.frame.size.height {
+            headerView.frame = CGRect(x:0, y:46, width:view.frame.size.width, height:77)
+            cartIcon.frame = CGRect(x:326, y:11, width:59, height:54)
+            DetailImg.frame = CGRect(x:0, y:121, width:view.frame.size.width, height:334 * (view.frame.size.width / 393))
+            DetailContainer.frame = CGRect(x:0, y:121 + 334 * (view.frame.size.width / 393) + 10, width:view.frame.size.width, height:344)
         } else {
-            DeviceDisplayShort = view.frame.size.height
-            DeviceDisplayLong = view.frame.size.width
-            headerView.frame = CGRect(x:0, y:0, width:DeviceDisplayLong, height:77)
+            headerView.frame = CGRect(x:0, y:0, width:view.frame.size.width, height:77)
+            cartIcon.frame = CGRect(x:750, y:11, width:59, height:54)
+            DetailImg.frame = CGRect(x:20, y:87, width:view.frame.size.height * 0.8, height:(view.frame.size.height * 0.8) * (334 / 393))
+            DetailContainer.frame = CGRect(x:view.frame.size.width / 2, y:77, width:view.frame.size.height * 0.8, height:view.frame.size.height * 0.8)
         }
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        NotificationCenter.default.addObserver(self,
-                                                   selector:#selector(didChangeOrientation(_:)),
-                                                   name: UIDevice.orientationDidChangeNotification,
-                                                   object: nil)
-    }
-    
-    @objc private func didChangeOrientation(_ notification: Notification) {
-        //画面回転時の処理
-        if ((self.view.window?.windowScene!.interfaceOrientation.isPortrait) != nil) {
-            headerView.frame = CGRect(x:0, y:46, width:DeviceDisplayShort, height:77)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        // 回転開始時に行う処理
+        if size.width < size.height {
+            headerView.frame = CGRect(x:0, y:46, width:size.width, height:77)
+            cartIcon.frame = CGRect(x:326, y:11, width:59, height:54)
+            DetailImg.frame = CGRect(x:0, y:121, width:size.width, height:334 * (size.width / 393))
+            DetailContainer.frame = CGRect(x:0, y:121 + 334 * (size.width / 393) + 10, width:size.width, height:344)
         } else {
-            headerView.frame = CGRect(x:0, y:0, width:DeviceDisplayLong, height:77)
+            headerView.frame = CGRect(x:0, y:0, width:size.width, height:77)
+            cartIcon.frame = CGRect(x:750, y:11, width:59, height:54)
+            DetailImg.frame = CGRect(x:20, y:87, width:size.height * 0.8, height:(size.height * 0.8) * (334 / 393))
+            DetailContainer.frame = CGRect(x:size.width / 2, y:87, width:size.height * 0.8, height:size.height * 0.75)
         }
     }
-    
+        
     @IBAction func cartTap(_ sender: Any) {
         print("Tap!!!")
         let ViewController = self.storyboard?.instantiateViewController(withIdentifier: "CartView") as! CartViewController
+        ViewController.modalPresentationStyle = .fullScreen
         self.present(ViewController, animated: true, completion: nil)
     }
     
@@ -80,15 +82,17 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func insertCart(_ sender: Any) {
-        productInCartImg += [outputImg]
-        productInCartProduct += [outputProduct]
-        productInCartPrice += [outputPrice]
-        productInCartQuantity += [buyQuantity.text!]
-        print(productInCartImg)
-        print(productInCartProduct)
-        print(productInCartPrice)
-        print(productInCartQuantity)
-        playSound(name: "insertCart")
+        if let index = productInCartProduct.firstIndex(of: outputProduct) {
+            productInCartQuantity[index] = String(Int(productInCartQuantity[index])! + Int(buyQuantity.text!)!)
+            playSound(name: "insertCart")
+        } else {
+            productInCartImg += [outputImg]
+            productInCartProduct += [outputProduct]
+            productInCartPrice += [outputPrice]
+            productInCartQuantity += [buyQuantity.text!]
+            playSound(name: "insertCart")
+        }
+        
     }
     
     

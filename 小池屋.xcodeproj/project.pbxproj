@@ -22,6 +22,7 @@
 		CE0461352935CC540033B8BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0461342935CC540033B8BF /* Assets.xcassets */; };
 		CE0461392935F9980033B8BF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0461382935F9980033B8BF /* DetailViewController.swift */; };
 		CE04613B2936ED0B0033B8BF /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04613A2936ED0B0033B8BF /* CartViewController.swift */; };
+		CE303F332941C8FF00EBC16F /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE303F322941C8FF00EBC16F /* AddUserViewController.swift */; };
 		CE34714D293D85F30012048A /* DatabaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE34714C293D85F30012048A /* DatabaseModel.swift */; };
 		CEEF8495293886A00042E160 /* purchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF8494293886A00042E160 /* purchaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		CE0461342935CC540033B8BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE0461382935F9980033B8BF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CE04613A2936ED0B0033B8BF /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		CE303F322941C8FF00EBC16F /* AddUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
 		CE34714C293D85F30012048A /* DatabaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModel.swift; sourceTree = "<group>"; };
 		CEEF8494293886A00042E160 /* purchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchaseViewController.swift; sourceTree = "<group>"; };
 		DD655391A839377C22CB52EF /* Pods-tableviewtestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tableviewtestTests.debug.xcconfig"; path = "Target Support Files/Pods-tableviewtestTests/Pods-tableviewtestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0461002934F2260033B8BF /* AppDelegate.swift */,
+				CE303F322941C8FF00EBC16F /* AddUserViewController.swift */,
 				CE0461022934F2260033B8BF /* SceneDelegate.swift */,
 				CE0461042934F2260033B8BF /* ViewController.swift */,
 				CE0461322935BE740033B8BF /* MenuViewController.swift */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0461052934F2260033B8BF /* ViewController.swift in Sources */,
+				CE303F332941C8FF00EBC16F /* AddUserViewController.swift in Sources */,
 				CE0461332935BE740033B8BF /* MenuViewController.swift in Sources */,
 				CEEF8495293886A00042E160 /* purchaseViewController.swift in Sources */,
 				CE0461392935F9980033B8BF /* DetailViewController.swift in Sources */,

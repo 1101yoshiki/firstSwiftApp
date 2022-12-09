@@ -7,11 +7,10 @@
 
 import Foundation
 import RealmSwift
-import UIKit
 
 class user: Object {
-    @Persisted var userName: String = ""
-    @Persisted var password: String = ""
+    @objc dynamic var userName: String = ""
+    @objc dynamic var password: String = ""
 }
 
 
